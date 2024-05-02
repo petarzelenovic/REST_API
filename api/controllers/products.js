@@ -32,7 +32,6 @@ const getAll = (req, res, next) => {
 
 const createdProduct = (req, res, next) => {
     const product = new Product({
-        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         price: req.body.price,
     });

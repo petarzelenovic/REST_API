@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const signup = (req, res, next) => {
     User.find({ email: req.body.email }) // provera da li postoji user sa tim mejlom
@@ -18,7 +20,6 @@ const signup = (req, res, next) => {
                         });
                     } else {
                         const user = new User({
-                            _id: new mongoose.Types.ObjectId(),
                             email: req.body.email,
                             password: hash,
                         });
@@ -63,6 +64,7 @@ const login = (req, res, next) => {
                             {
                                 email: user[0].email,
                                 userId: user[0]._id,
+                                token_type: "refresh"
                             },
                             "secret",
                             {

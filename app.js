@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const productRouts = require("./api/routes/products");
 const orderRouts = require("./api/routes/orders");
 const userRoutes = require("./api/routes/user");
+const tokenRoutes = require("./api/routes/token");
 
 mongoose.connect(
     "mongodb+srv://node-shop:node-shop@node-rest-shop.exu1srt.mongodb.net/?retryWrites=true&w=majority&appName=node-rest-shop"
@@ -42,6 +43,7 @@ app.use("/products", productRouts); // sve sa /products ce biti prosledjeno na p
 
 app.use("/orders", orderRouts);
 app.use("/user", userRoutes);
+app.use("/token", tokenRoutes);
 
 //ako nikakvu rutu nije prepoznao znaci da je doslo do greske
 app.use((req, res, next) => {

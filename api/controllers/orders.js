@@ -39,7 +39,6 @@ const createOrder = (req, res, next) => {
                 });
             }
             const order = new Order({
-                _id: new mongoose.Types.ObjectId(),
                 quantity: req.body.quantity,
                 product: req.body.productId,
             });
