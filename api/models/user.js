@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId, //long string tip, _ je zbog konvencije nazivanja
     email: {
         type: String,
         required: true,

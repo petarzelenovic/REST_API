@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const Token = require("../models/token");
 
 const refreshToken = (req, res) => {
     const token = jwt.sign(
@@ -18,6 +19,26 @@ const refreshToken = (req, res) => {
     });
 }
 
+const revokeToken = (req, res) => {
+    const token = new Token({
+        value: req.headers.authorization.split(" ")[1]
+    });
+    token.save()
+        .then((result) => {
+            console.log(result);
+            res.status(201).json({
+                message: "Token revoked",
+            });
+        })
+        .catch((err) => {
+            res.status(500).json({
+                error: err,
+            });
+        });
+
+}
+
 module.exports = {
-    refreshToken
+    refreshToken,
+    revokeToken
 }
